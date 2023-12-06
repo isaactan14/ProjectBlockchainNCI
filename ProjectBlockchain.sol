@@ -44,12 +44,22 @@ contract DonationTracking{
 
     }
 
+    //function to log each event when a transfer is successful
+    event transferLog(address donor, address charityOrg, uint amount);
+
+
     function transferToCharity(uint orgIndex) public {
         require(orgIndex < charity_org.length, "Invalid organization index");
         address payable selectedCharityOrg = charity_org[orgIndex];
 
+        //Store the donation amount in a variable
+        uint donationAmount = address(this).balance;
+
         // Perform the transfer
-            selectedCharityOrg.transfer(address(this).balance);
+            selectedCharityOrg.transfer(donationAmount);
+
+        //Emit the event log
+        emit transferLog(msg.sender, selectedCharityOrg, donationAmount);
         }
         
 

@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.18+commit.87f61d96"
+		"version": "0.8.22+commit.4fc1097e"
 	},
 	"language": "Solidity",
 	"output": {
@@ -9,6 +9,31 @@
 				"inputs": [],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "donor",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "charityOrg",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transferLog",
+				"type": "event"
 			},
 			{
 				"inputs": [
@@ -167,7 +192,7 @@
 		"compilationTarget": {
 			"ProjectBlockchain.sol": "DonationTracking"
 		},
-		"evmVersion": "paris",
+		"evmVersion": "shanghai",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -180,11 +205,11 @@
 	},
 	"sources": {
 		"ProjectBlockchain.sol": {
-			"keccak256": "0xffe86322aa22fba1391d926015bb0e35bfd4f95a0489a65f7294bb7e527c8793",
+			"keccak256": "0x19483c99bdc917ef4996406bd15580ecc8289c33a092edc111df054f8eb98a13",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://f637ddf817ad7a8c23eed506c2292bca23eb9fbe0382924da3424c34006b0327",
-				"dweb:/ipfs/QmXKonhmYB6dRWN4pZrRqkoW3VdM1ju7z6rGALdipvX38U"
+				"bzz-raw://98da30b613a7baa2a3be6e172a4294fe0bc8b36f52a267dbcc232c702df0d3db",
+				"dweb:/ipfs/QmVGLQPcRwNEge39u7zjYEYeezZW6umTYrQp59pcp32JwD"
 			]
 		}
 	},
