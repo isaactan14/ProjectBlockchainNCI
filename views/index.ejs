@@ -69,7 +69,7 @@
               <img src="/Images/Image1.jpeg" class="img-fluid" alt="Picture of Charity 1">
               <figcaption>Charity 1</figcaption>
             </figure>
-            <!--News article and picture courtesy to https://cnalifestyle.channelnewsasia.com/entertainment/hilary-swank-gives-birth-twins-354291-->
+        
             <p>
               Welcome to Helping Hands Heroes, where kids become real-life superheroes by making a positive impact on
               the world! We believe that even the smallest hands can create the biggest change. Our charity organization
@@ -90,7 +90,7 @@
               <img src="/Images/Image2.jpeg" class="img-fluid" alt="Picture of Charity 2">
               <figcaption>Charity 2</figcaption>
             </figure>
-            <!--News article and picture courtesy to https://cnalifestyle.channelnewsasia.com/entertainment/hilary-swank-gives-birth-twins-354291-->
+         
             <p>
               Welcome to the Golden Hearts Foundation, where we are dedicated to ensuring that our beloved elderly
               citizens lead dignified, joyful, and fulfilling lives during their golden years. Our charity organization
@@ -114,7 +114,7 @@
               <img src="/Images/Image3.jpeg" class="img-fluid" alt="Picture of Charity 3">
               <figcaption>Charity 3</figcaption>
             </figure>
-            <!--News article and picture courtesy to https://cnalifestyle.channelnewsasia.com/entertainment/hilary-swank-gives-birth-twins-354291-->
+      
             <p>
               Welcome to the Rising Hope Foundation, a charitable organization committed to creating positive change in
               developing countries. Our mission is to empower and uplift vulnerable communities in these regions,
@@ -139,7 +139,7 @@
               <img src="/Images/Image4.jpeg" class="img-fluid" alt="Picture of Charity 4">
               <figcaption>Charity 4</figcaption>
             </figure>
-            <!--News article and picture courtesy to https://cnalifestyle.channelnewsasia.com/entertainment/hilary-swank-gives-birth-twins-354291-->
+           
             <p>
               Welcome to the SafeHarbor Foundation, a compassionate charity organization dedicated to supporting and
               empowering survivors of domestic abuse. Our mission is to provide a safe refuge for those who have
@@ -159,6 +159,16 @@
         </div>
       </div>
 
+      <h2>
+        logs
+      </h2>
+    
+      <textarea id="logs" name="logs" rows="5" cols="50">
+        
+      </textarea>
+      <button type="button" class="btn btn-primary btn-sm" id="button4" onclick="getLogs()">RETRIEVE LOGS</button>
+
+
       <script>      
         let account;
         const connectMetamask = async () => {
@@ -173,9 +183,29 @@
         const connectContract = async () => {
                 const ABI = [
 	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "donor",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "charityOrg",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "transferLog",
+		"type": "event"
 	},
 	{
 		"inputs": [
@@ -189,6 +219,49 @@
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "deposit",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "orgIndex",
+				"type": "uint256"
+			}
+		],
+		"name": "transferToCharity",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address payable",
+				"name": "_to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "withdraw",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
 	},
 	{
 		"inputs": [
@@ -207,13 +280,6 @@
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "deposit",
-		"outputs": [],
-		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -286,42 +352,11 @@
 		],
 		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "orgIndex",
-				"type": "uint256"
-			}
-		],
-		"name": "transferToCharity",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address payable",
-				"name": "_to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_amount",
-				"type": "uint256"
-			}
-		],
-		"name": "withdraw",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
 	}
 ]   ;
         
         
-                const Address = "0x73a4beb63576c24f266f8b4b218cf20f05548fa8"; // Taking Address from Remix 
+                const Address = "0xf9ee7f4badf2c707fdfa2a89465256829b608484"; // Taking Address from Remix 
                 window.web3 = await new Web3(window.ethereum);
                 window.contract = await new window.web3.eth.Contract(ABI, Address);
                 document.getElementById("contractArea").innerHTML = "Connected to Contract"; // calling the elementID above
@@ -343,7 +378,7 @@
                 await window.contract.methods.withdraw(address, amount).send({from: account});
             }
         
-        //Tried hardcoding for testing purpose only. To be removed.
+        
             const donateToOrganization = async (organizationIndex) => {
               const ethAmount= parseFloat(document.getElementById(`input${organizationIndex}`).value); // Get the ETH amount entered by the user
               
@@ -357,9 +392,31 @@
 
               // Provide feedback to the user that the donation was successful
               alert(`Thank you for donating ${ethAmount} ETH to your preferred charity.`);
+
+              getLogs();
             }
 
+            /**window.contract.events.transferLog({}, (error, event) => {
+              console.log("Event received:", event);  // Add this line to check if the event listener is triggered
 
+           if (error) {
+           console.error(error);
+             } else {
+                  console.log(event);
+                  document.getElementById("logs").innerHTML = `logs: ${event.returnValues.donor} donated ${event.returnValues.amount} ETH to ${event.returnValues.charityOrg}`;
+                  }
+        });**/
+
+        const getLogs = async () => {
+    window.contract.events.transferLog({}, (error, event) => {
+        if (error) {
+            console.error(error);
+        } else {
+            console.log(event);
+            document.getElementById("logs").innerHTML = `logs: ${event.returnValues.donor} donated ${event.returnValues.amount} ETH to ${event.returnValues.charityOrg}`;
+        }
+    });
+};
                 
         </script> 
      
