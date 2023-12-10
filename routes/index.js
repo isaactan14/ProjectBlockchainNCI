@@ -19,9 +19,6 @@ router.get('/page2', function(req, res, next) {
   res.render('page2', { title: 'Welcome to ETH Blockchain Donation Portal', name:null });
 });
 
-router.get('/page3', function(req, res, next) {
-  res.render('page3', { title: 'Welcome to ETH Blockchain Donation Portal', name:null });
-});
 
 
 module.exports = router;
