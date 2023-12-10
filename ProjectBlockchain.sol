@@ -67,12 +67,26 @@ contract DonationTracking{
         return address(this);
     }
 
+    //Obtain the contract balance
         function getBalance() external view returns(uint) {
         return address(this).balance;
     }
 
         function withdraw(address payable _to, uint _amount) external {
         _to.transfer(_amount);
+    }
+
+    //Obtain the wallet's balance
+     function getOwnerBalance() public view returns (uint256) {
+        return msg.sender.balance;
+    }
+
+    // Function to transfer ETH from a connected wallet that call this function to another address 
+    function transferEth(address payable recipientWallet) external payable {
+
+        require(msg.sender.balance >= msg.value, "Insufficient balance to perform transaction");
+        
+        recipientWallet.transfer(msg.value);
     }
 
 }

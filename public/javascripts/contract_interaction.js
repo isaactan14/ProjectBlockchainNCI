@@ -12,6 +12,11 @@ const connectMetamask = async () => {
 const connectContract = async () => {
     const ABI = [
         {
+            "inputs": [],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
             "anonymous": false,
             "inputs": [
                 {
@@ -50,49 +55,6 @@ const connectContract = async () => {
             "type": "function"
         },
         {
-            "inputs": [],
-            "name": "deposit",
-            "outputs": [],
-            "stateMutability": "payable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "orgIndex",
-                    "type": "uint256"
-                }
-            ],
-            "name": "transferToCharity",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address payable",
-                    "name": "_to",
-                    "type": "address"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "_amount",
-                    "type": "uint256"
-                }
-            ],
-            "name": "withdraw",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "stateMutability": "nonpayable",
-            "type": "constructor"
-        },
-        {
             "inputs": [
                 {
                     "internalType": "uint256",
@@ -109,6 +71,13 @@ const connectContract = async () => {
                 }
             ],
             "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "deposit",
+            "outputs": [],
+            "stateMutability": "payable",
             "type": "function"
         },
         {
@@ -158,6 +127,19 @@ const connectContract = async () => {
         },
         {
             "inputs": [],
+            "name": "getOwnerBalance",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
             "name": "owner",
             "outputs": [
                 {
@@ -181,10 +163,54 @@ const connectContract = async () => {
             ],
             "stateMutability": "view",
             "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address payable",
+                    "name": "recipientWallet",
+                    "type": "address"
+                }
+            ],
+            "name": "transferEth",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "orgIndex",
+                    "type": "uint256"
+                }
+            ],
+            "name": "transferToCharity",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address payable",
+                    "name": "_to",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "withdraw",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
         }
     ];
 
-    const Address = "0xf9ee7f4badf2c707fdfa2a89465256829b608484"; // Taking Address from Remix 
+    const Address = "0x06ca1993c8c81c284479d93fc3158c47c70a6f6a"; // Taking Address from Remix 
     window.web3 = await new Web3(window.ethereum);
     window.contract = await new window.web3.eth.Contract(ABI, Address);
     document.getElementById("contractArea").innerHTML = "Connected to Contract"; // calling the elementID above
@@ -201,7 +227,14 @@ const getBalanceApple = async () => { // const getBalanceApple is the HTML funct
     document.getElementById("balanceArea").innerHTML = `Contract Balance: ${data}`;
 }
 
-//Withdraw funds
+//Obtain owner's wallet balance
+const getWalletBalance = async () => { // 
+    const message = await window.contract.methods.getOwnerBalance().call();
+    messageEth = (message/1000000000000000000);
+    document.getElementById("ownerBalance").innerHTML = `Your Balance in ETH: ${messageEth}`;
+}
+
+//Withdraw funds from smart contract
 const withdraw = async () => {
     const amountEth = document.getElementById("amountInput").value;
 
@@ -263,3 +296,16 @@ const getLogs = async () => {
 document.addEventListener("DOMContentLoaded", function () {
     getLogs();
 });
+
+//Transfer funds to another address
+const transfer = async () => {
+    const amountEth = document.getElementById("amountInput").value;
+
+    if (isNaN(amountEth) || amountEth <= 0) {
+        alert("Please enter a valid positive number for amount in ETH currency.");
+        return;
+    }
+    const amountWei = amountEth * 1000000000000000000;
+    const address = document.getElementById("addressInput").value;
+    await window.contract.methods.transferEth(address).send({ from: account, value: amountWei });
+}
