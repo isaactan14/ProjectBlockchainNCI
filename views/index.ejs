@@ -42,20 +42,20 @@
       <div id="readArea"> <!--Connecting to MetaMask -->
         <button class="btn btn-success" onclick="connectMetamask()">CLICK HERE TO CONNECT TO METAMASK </button>
         <p id="userArea">Status: Not connected to Metamask</p>
-         <!-- index html to meta-->
-    </div>
+        <!-- index html to meta-->
+      </div>
 
 
-    <button onclick="connectContract()">CONNECT TO CONTRACT</button>
-    <p id="contractArea">Status: Not connected to Contract</p>
-    <!-- meta to SC -->
+      <button onclick="connectContract()">CONNECT TO CONTRACT</button>
+      <p id="contractArea">Status: Not connected to Contract</p>
+      <!-- meta to SC -->
 
-    <button onclick="getContractAccount()"> GET CONTRACT ACCOUNT </button>
-    <p id="contractAccount">Contract Account: Not Connected to Contract</p>
-    <!-- CAlling the function designed in solidity get deployment addresss -->
+      <button onclick="getContractAccount()"> GET CONTRACT ACCOUNT </button>
+      <p id="contractAccount">Contract Account: Not Connected to Contract</p>
+      <!-- CAlling the function designed in solidity get deployment addresss -->
 
-    <button onclick="getBalanceApple()">GET BALANCE OF THE CONTRACT</button>
-    <p id="balanceArea">Balance: Not Connected to Contract</p>
+      <button onclick="getBalanceApple()">GET BALANCE OF THE CONTRACT</button>
+      <p id="balanceArea">Balance: Not Connected to Contract</p>
 
       <div class="container text-center">
         <div class="row">
@@ -64,17 +64,18 @@
               <img src="/Images/Image1.jpeg" class="img-fluid" alt="Picture of Charity 1">
               <figcaption>Charity 1</figcaption>
             </figure>
-        
+
             <p>
               Welcome to Helping Hands Heroes, where kids become real-life superheroes by making a positive impact on
               the world! We believe that even the smallest hands can create the biggest change. Our charity organization
               is all about kids helping kids and making the world a better place. We believe in the power of education.
               Our programs help you learn about important issues like helping the environment, and supporting other kids
-              in need. 
+              in need.
               <br>
               <label for "input0">ETH Amount</label>
               <input type="number" min="0" value="0" step=".0001" id="input0">
-              <button type="button" class="btn btn-primary btn-sm" id="button0" onclick="donateToOrganization(0)">DONATE NOW</button>
+              <button type="button" class="btn btn-primary btn-sm" id="button0" onclick="donateToOrganization(0)">DONATE
+                NOW</button>
 
             </p>
           </div>
@@ -85,7 +86,7 @@
               <img src="/Images/Image2.jpeg" class="img-fluid" alt="Picture of Charity 2">
               <figcaption>Charity 2</figcaption>
             </figure>
-         
+
             <p>
               Welcome to the Golden Hearts Foundation, where we are dedicated to ensuring that our beloved elderly
               citizens lead dignified, joyful, and fulfilling lives during their golden years. Our charity organization
@@ -95,7 +96,8 @@
               <br>
               <label for "input1">ETH Amount</label>
               <input type="number" min="0" value="0" step=".0001" id="input1">
-              <button type="button" class="btn btn-primary btn-sm" id="button1" onclick="donateToOrganization(1)">DONATE NOW</button>
+              <button type="button" class="btn btn-primary btn-sm" id="button1" onclick="donateToOrganization(1)">DONATE
+                NOW</button>
 
             </p>
           </div>
@@ -109,18 +111,19 @@
               <img src="/Images/Image3.jpeg" class="img-fluid" alt="Picture of Charity 3">
               <figcaption>Charity 3</figcaption>
             </figure>
-      
+
             <p>
               Welcome to the Rising Hope Foundation, a charitable organization committed to creating positive change in
               developing countries. Our mission is to empower and uplift vulnerable communities in these regions,
               working hand in hand with local partners to bring hope, opportunity, and sustainable development where it
               is needed most. The Rising Hope Foundation is driven by a powerful vision of a world where every community
               in a developing country has the chance to thrive. We work tirelessly to provide access to essential
-              services such as clean water, healthcare, education, and food security. 
+              services such as clean water, healthcare, education, and food security.
               <br>
               <label for "input2">ETH Amount</label>
               <input type="number" min="0" value="0" step=".0001" id="input2">
-              <button type="button" class="btn btn-primary btn-sm" id="button2" onclick="donateToOrganization(2)">DONATE NOW</button>
+              <button type="button" class="btn btn-primary btn-sm" id="button2" onclick="donateToOrganization(2)">DONATE
+                NOW</button>
 
 
             </p>
@@ -134,294 +137,297 @@
               <img src="/Images/Image4.jpeg" class="img-fluid" alt="Picture of Charity 4">
               <figcaption>Charity 4</figcaption>
             </figure>
-           
+
             <p>
               Welcome to the SafeHarbor Foundation, a compassionate charity organization dedicated to supporting and
               empowering survivors of domestic abuse. Our mission is to provide a safe refuge for those who have
               experienced abuse, offering them the support, resources, and hope they need to rebuild their lives. The
               SafeHarbor Foundation is guided by a profound commitment to empowering survivors and ending the cycle of
               domestic abuse. We advocate for the rights and well-being of survivors, working with legal systems,
-              policymakers, and other organizations to ensure justice and protection. 
+              policymakers, and other organizations to ensure justice and protection.
               <br>
               <label for "input3">ETH Amount</label>
               <input type="number" min="0" value="0" step=".0001" id="input3">
-              <button type="button" class="btn btn-primary btn-sm" id="button3" onclick="donateToOrganization(3)">DONATE NOW</button>
+              <button type="button" class="btn btn-primary btn-sm" id="button3" onclick="donateToOrganization(3)">DONATE
+                NOW</button>
 
-              
+
             </p>
           </div>
 
         </div>
       </div>
 
-        <div id="logs1">
+
       <h2>
-        logs1
+        Transaction Log
       </h2>
-    
-      <textarea id="" name ="logs1" rows="5" cols="50">
-        
+
+      <textarea id="logs" name="logs" rows="10" cols="100">
+
       </textarea>
-    </div>
-      <button type="button" class="btn btn-primary btn-sm" id="button4" onclick="getLogs()">RETRIEVE LOGS</button>
-     
-
-<script>
-let account;
-const connectMetamask = async () => {
-    if(window.ethereum !== "undefined"){
-        const accounts = await ethereum.request({method: "eth_requestAccounts"});
-        account = accounts[0];
-        document.getElementById("userArea").innerHTML = `User Account: ${account}`;
-    }
-}
 
 
-const connectContract = async () => {
-        const ABI = [
-{
-"anonymous": false,
-"inputs": [
-{
-"indexed": false,
-"internalType": "address",
-"name": "donor",
-"type": "address"
-},
-{
-"indexed": false,
-"internalType": "address",
-"name": "charityOrg",
-"type": "address"
-},
-{
-"indexed": false,
-"internalType": "uint256",
-"name": "amount",
-"type": "uint256"
-}
-],
-"name": "transferLog",
-"type": "event"
-},
-{
-"inputs": [
-{
-"internalType": "address payable",
-"name": "newCharityOrg",
-"type": "address"
-}
-],
-"name": "addCharityOrganization",
-"outputs": [],
-"stateMutability": "nonpayable",
-"type": "function"
-},
-{
-"inputs": [],
-"name": "deposit",
-"outputs": [],
-"stateMutability": "payable",
-"type": "function"
-},
-{
-"inputs": [
-{
-"internalType": "uint256",
-"name": "orgIndex",
-"type": "uint256"
-}
-],
-"name": "transferToCharity",
-"outputs": [],
-"stateMutability": "nonpayable",
-"type": "function"
-},
-{
-"inputs": [
-{
-"internalType": "address payable",
-"name": "_to",
-"type": "address"
-},
-{
-"internalType": "uint256",
-"name": "_amount",
-"type": "uint256"
-}
-],
-"name": "withdraw",
-"outputs": [],
-"stateMutability": "nonpayable",
-"type": "function"
-},
-{
-"inputs": [],
-"stateMutability": "nonpayable",
-"type": "constructor"
-},
-{
-"inputs": [
-{
-"internalType": "uint256",
-"name": "",
-"type": "uint256"
-}
-],
-"name": "charity_org",
-"outputs": [
-{
-"internalType": "address payable",
-"name": "",
-"type": "address"
-}
-],
-"stateMutability": "view",
-"type": "function"
-},
-{
-"inputs": [
-{
-"internalType": "uint256",
-"name": "",
-"type": "uint256"
-}
-],
-"name": "donors",
-"outputs": [
-{
-"internalType": "address",
-"name": "",
-"type": "address"
-}
-],
-"stateMutability": "view",
-"type": "function"
-},
-{
-"inputs": [],
-"name": "getAddress",
-"outputs": [
-{
-"internalType": "address",
-"name": "",
-"type": "address"
-}
-],
-"stateMutability": "view",
-"type": "function"
-},
-{
-"inputs": [],
-"name": "getBalance",
-"outputs": [
-{
-"internalType": "uint256",
-"name": "",
-"type": "uint256"
-}
-],
-"stateMutability": "view",
-"type": "function"
-},
-{
-"inputs": [],
-"name": "owner",
-"outputs": [
-{
-"internalType": "address",
-"name": "",
-"type": "address"
-}
-],
-"stateMutability": "view",
-"type": "function"
-},
-{
-"inputs": [],
-"name": "selectedOrgIndex",
-"outputs": [
-{
-"internalType": "uint256",
-"name": "",
-"type": "uint256"
-}
-],
-"stateMutability": "view",
-"type": "function"
-}
-]   ;
 
-        const Address = "0xf9ee7f4badf2c707fdfa2a89465256829b608484"; // Taking Address from Remix 
-        window.web3 = await new Web3(window.ethereum);
-        window.contract = await new window.web3.eth.Contract(ABI, Address);
-        document.getElementById("contractArea").innerHTML = "Connected to Contract"; // calling the elementID above
-    }
+      <script>
+        let account;
+        const connectMetamask = async () => {
+          if (window.ethereum !== "undefined") {
+            const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+            account = accounts[0];
+            document.getElementById("userArea").innerHTML = `User Account: ${account}`;
+          }
+        }
 
-    const getContractAccount = async () => {
-        const data = await window.contract.methods.getAddress().call();
-        document.getElementById("contractAccount").innerHTML = `Contract Account: ${data}`;
-    }
 
-    const getBalanceApple = async () => { // const getBalanceApple is the HTML function & .contract.getBalance is the smart contract function
-        const data = await window.contract.methods.getBalance().call();
-        document.getElementById("balanceArea").innerHTML = `Contract Balance: ${data}`;
-    }
+        const connectContract = async () => {
+          const ABI = [
+            {
+              "anonymous": false,
+              "inputs": [
+                {
+                  "indexed": false,
+                  "internalType": "address",
+                  "name": "donor",
+                  "type": "address"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "address",
+                  "name": "charityOrg",
+                  "type": "address"
+                },
+                {
+                  "indexed": false,
+                  "internalType": "uint256",
+                  "name": "amount",
+                  "type": "uint256"
+                }
+              ],
+              "name": "transferLog",
+              "type": "event"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "address payable",
+                  "name": "newCharityOrg",
+                  "type": "address"
+                }
+              ],
+              "name": "addCharityOrganization",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "deposit",
+              "outputs": [],
+              "stateMutability": "payable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "orgIndex",
+                  "type": "uint256"
+                }
+              ],
+              "name": "transferToCharity",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "address payable",
+                  "name": "_to",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "_amount",
+                  "type": "uint256"
+                }
+              ],
+              "name": "withdraw",
+              "outputs": [],
+              "stateMutability": "nonpayable",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "stateMutability": "nonpayable",
+              "type": "constructor"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "name": "charity_org",
+              "outputs": [
+                {
+                  "internalType": "address payable",
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "name": "donors",
+              "outputs": [
+                {
+                  "internalType": "address",
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "getAddress",
+              "outputs": [
+                {
+                  "internalType": "address",
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "getBalance",
+              "outputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "owner",
+              "outputs": [
+                {
+                  "internalType": "address",
+                  "name": "",
+                  "type": "address"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            },
+            {
+              "inputs": [],
+              "name": "selectedOrgIndex",
+              "outputs": [
+                {
+                  "internalType": "uint256",
+                  "name": "",
+                  "type": "uint256"
+                }
+              ],
+              "stateMutability": "view",
+              "type": "function"
+            }
+          ];
 
-    const withdraw = async () => {
-        const amount = document.getElementById("amountInput").value;
-        const address = document.getElementById("addressInput").value;
-        await window.contract.methods.withdraw(address, amount).send({from: account});
-    }
+          const Address = "0xf9ee7f4badf2c707fdfa2a89465256829b608484"; // Taking Address from Remix 
+          window.web3 = await new Web3(window.ethereum);
+          window.contract = await new window.web3.eth.Contract(ABI, Address);
+          document.getElementById("contractArea").innerHTML = "Connected to Contract"; // calling the elementID above
+        }
 
- 
-    
-    const donateToOrganization = async (organizationIndex) => {
-          const ethAmount= parseFloat(document.getElementById(`input${organizationIndex}`).value); // Get the ETH amount entered by the user
-          
-          const weiAmount = ethAmount*1000000000000000000;
-    
+        const getContractAccount = async () => {
+          const data = await window.contract.methods.getAddress().call();
+          document.getElementById("contractAccount").innerHTML = `Contract Account: ${data}`;
+        }
+
+        const getBalanceApple = async () => { // const getBalanceApple is the HTML function & .contract.getBalance is the smart contract function
+          const data = await window.contract.methods.getBalance().call();
+          document.getElementById("balanceArea").innerHTML = `Contract Balance: ${data}`;
+        }
+
+        const withdraw = async () => {
+          const amount = document.getElementById("amountInput").value;
+          const address = document.getElementById("addressInput").value;
+          await window.contract.methods.withdraw(address, amount).send({ from: account });
+        }
+
+
+
+        const donateToOrganization = async (organizationIndex) => {
+          const ethAmount = parseFloat(document.getElementById(`input${organizationIndex}`).value); // Get the ETH amount entered by the user
+
+          const weiAmount = ethAmount * 1000000000000000000;
+
           // Send a donation to the smart contract
-          await window.contract.methods.deposit().send({from: account, value: weiAmount});
-    
+          await window.contract.methods.deposit().send({ from: account, value: weiAmount });
+
           // After the donation is sent to smart contract, immediately call the transferToCharity function
-          await window.contract.methods.transferToCharity(organizationIndex).send({from: account});
-    
+          await window.contract.methods.transferToCharity(organizationIndex).send({ from: account });
+
           // Provide feedback to the user that the donation was successful
           alert(`Thank you for donating ${ethAmount} ETH to your preferred charity.`);
 
           //get log upon donation completion
           getLogs();
-       
+
         }
 
         const getLogs = async () => {
-    try {
-        // Get past events for the 'transferLog' event
-        const events = await window.contract.getPastEvents('transferLog', {
-            fromBlock: 0, // You can adjust the block range as needed
-            toBlock: 'latest',
+          try {
+            const latestBlock = await window.ethereum.request({ method: 'eth_blockNumber' });
+
+            // Get past events for the 'transferLog' event
+            const events = await window.contract.getPastEvents('transferLog', {
+              fromBlock: latestBlock - 1,
+              toBlock: 'latest',
+            });
+
+            events.forEach((event) => {
+              console.log(event);
+              const donationAmount = (event.returnValues.amount) / 1000000000000000000;
+              const logText = `Donor's Address: ${event.returnValues.donor} donated ${donationAmount} ETH to Charity Organization's Address ${event.returnValues.charityOrg}`;
+
+              // Append the new log to the existing content
+              document.getElementById("logs").innerHTML += logText + "\n";
+            });
+          } catch (error) {
+            console.error(error);
+          }
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+          // Call getLogs after the DOM loaded
+          getLogs();
         });
 
-        events.forEach((event) => {
-            console.log(event);
-            const logText = `logs: ${event.returnValues.donor} donated ${event.returnValues.amount} ETH to ${event.returnValues.charityOrg}`;
 
-            // Append the new log to the existing content
-            document.getElementById("logs1").innerHTML += logText + "<br>";
-        });
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-document.addEventListener("DOMContentLoaded", function () {
-    // Call getLogs after the DOM has fully loaded
-    getLogs();
-});
-   
-
-</script>
+      </script>
 
 
 
