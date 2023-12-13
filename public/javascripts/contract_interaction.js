@@ -229,9 +229,10 @@ const getBalanceApple = async () => { // const getBalanceApple is the HTML funct
 
 //Obtain owner's wallet balance
 const getWalletBalance = async () => { // 
-    const message = await window.contract.methods.getOwnerBalance().call();
-    messageEth = (message/1000000000000000000);
-    document.getElementById("ownerBalance").innerHTML = `Your Balance in ETH: ${messageEth}`;
+    const accountSelected = document.getElementById("accountInput").value;
+    const message = await window.contract.methods.getOwnerBalance().call({ from: accountSelected });
+    const balanceEth = window.web3.utils.fromWei(message, "ether");
+    document.getElementById("ownerBalance").innerHTML = `Your Balance in ETH: ${balanceEth}`;
 }
 
 //Withdraw funds from smart contract
@@ -308,4 +309,11 @@ const transfer = async () => {
     const amountWei = amountEth * 1000000000000000000;
     const address = document.getElementById("addressInput").value;
     await window.contract.methods.transferEth(address).send({ from: account, value: amountWei });
+
+    const currentDate = new Date();
+    const timestamp = currentDate.toLocaleString();
+    const logTransfer = `Your transfer of ${amountEth} ETH to ${address} is successful on ${timestamp}.`;
+
+    // Append the new log to the existing content
+    document.getElementById("transferLogs").innerHTML += logTransfer + "\n";
 }

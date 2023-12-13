@@ -12,7 +12,6 @@
             <!-- index html to meta-->
         </div>
 
-
         <button onclick="connectContract()">CONNECT TO CONTRACT</button>
         <p id="contractArea">Status: Not connected to Contract</p>
         <!-- metamask to smart contract connection -->
@@ -25,6 +24,24 @@
         <button onclick="getBalanceApple()">GET BALANCE OF THE CONTRACT</button>
         <p id="balanceArea">Balance: Not Connected to Contract</p>
 
+        <p>
+            Select Your Account
+            <select id="accountInput">
+                <option value="0x829c7599f5ccF77c050e0046356fA9F71053d4fD">
+                    Charity 1: 10x829c7599f5ccF77c050e0046356fA9F71053d4fD
+                </option>
+                <option value="0x2A6e3989f198deBcdfb938b720817a1f2D987958">
+                    Charity 2: 0x2A6e3989f198deBcdfb938b720817a1f2D987958
+                </option>
+                <option value="0x03C75cD4B2Aa25B848814D6ABD44AA60B3FdAB46">
+                    Charity 3: 0x03C75cD4B2Aa25B848814D6ABD44AA60B3FdAB46
+                </option>
+                <option value="0x7Ab19cc3DC876D75E9cc0427EA0355B8600Ae8B7">
+                    Charity 4: 0x7Ab19cc3DC876D75E9cc0427EA0355B8600Ae8B7
+                </option>
+            </select>
+        </p>
+
         <!--Obtain the connected wallet balance-->
         <button onclick="getWalletBalance()">GET BALANCE OF YOUR WALLET</button>
         <p id="ownerBalance">Balance: Not Connected</p>
@@ -35,6 +52,13 @@
         <input type="text" id="addressInput" placeholder="Enter Recipient's Address"> <br>
         <input type="number" id="amountInput" placeholder="Enter Amount in ETH">
 
+        <h2>
+            Transfer Logs
+        </h2>
+
+        <textarea id="transferLogs" name="transferLogs" rows="10" cols="100">
+
+          </textarea>
 
         </div>
 
