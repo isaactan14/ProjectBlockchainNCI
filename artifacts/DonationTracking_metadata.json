@@ -121,6 +121,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "getOwnerBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "owner",
 				"outputs": [
 					{
@@ -143,6 +156,19 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "recipientWallet",
+						"type": "address"
+					}
+				],
+				"name": "transferEth",
+				"outputs": [],
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -205,11 +231,11 @@
 	},
 	"sources": {
 		"ProjectBlockchain.sol": {
-			"keccak256": "0x19483c99bdc917ef4996406bd15580ecc8289c33a092edc111df054f8eb98a13",
+			"keccak256": "0x3b68cc3a44dfa028f3fe62ffac951d1ef6a69514ed20918cbefc27969575e7d3",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://98da30b613a7baa2a3be6e172a4294fe0bc8b36f52a267dbcc232c702df0d3db",
-				"dweb:/ipfs/QmVGLQPcRwNEge39u7zjYEYeezZW6umTYrQp59pcp32JwD"
+				"bzz-raw://ce9ec599f8e8bcbdceb6b8bd1b1c3eef3c6ec909128a20280e46bbf063863fa3",
+				"dweb:/ipfs/QmQwG9peUTdXSnHwCrFrGoogTKAWh2Y38C2cNxpRULcXVV"
 			]
 		}
 	},
